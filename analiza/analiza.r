@@ -67,12 +67,8 @@ k <- kmeans(data.norm, 5, nstart=1000)
 skupine <- data.frame(state=st2$state, skupina=factor(k$cluster))
 
 
-zemljevid1 <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/states_21basic.zip", "states",
-                             encoding="UTF-8") 
-                          
-#names(zemljevid)
-
-zem2 <- tm_shape(merge(zemljevid1, skupine, by.x="STATE_NAME", by.y="state")) + tm_polygons("skupina", showNA = FALSE) 
+zem2 <- tm_shape(merge(zemljevid, skupine, by.x="STATE_NAME", by.y="state")) + 
+        tm_polygons("skupina", showNA = FALSE) 
             
 
 
