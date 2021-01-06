@@ -207,8 +207,13 @@ v skladu, kar se je dejansko zgodilo, a se je tu znižal več kot pa se bi dejan
 moral. Problem je seveda v tem, da smo upošteval, da naj bi bil BDP per capita odvisen
 le od leta, kar pa seveda ni res. Useeno pa za leto 2019 napoved ni tako slaba.
 
+```{r zem2, echo=FALSE, fig.align='center'}
+zem2
+```
 
-
+Nekaj malega o domnevah o grupiranju držav smo že spregovorili prej, sedaj nam graf
+prikazuje eno izmed možnih grupiranj držav, po metodi voditeljev. So pa države grupirane,
+kot bi to pričakovai.
 
 ***
 

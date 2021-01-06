@@ -27,6 +27,8 @@ shinyUI(fluidPage(theme = shinytheme("slate"),
                                             value=2010,
                                             sep = "",
                                             step=1),
+                                br(),
+                                br(),
                                 selectInput(inputId = "drzava",
                                             label = "Država:",
                                             choices = c(sort(unique(tabela2$State)))

@@ -6,7 +6,7 @@ shinyServer(function(input, output) {
                      bins=input$bini, fill="#2BFFF2", color="black") +
       geom_density(alpha=.3, fill="#4EFF2B") +
       xlab("Urna postavka") + 
-      ylab("Absolutna frekvenca") +
+      ylab("Relativna frekvenca") +
       ggtitle("Histogram pojavljenosti povprečnih plač")
   })
   

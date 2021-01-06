@@ -559,14 +559,6 @@ GDP_by_state <- tabela
 #    tabela <- tabela %>% pivot_longer(2:9, names_to = "leto") %>% rename(GDP=value)
 #    tabela[[2]] <- parse_number(tabela[[2]])
 #    GDP_by_state <- tabela
-#    
-#    
-#    
-#    
-#    
-#    
-#    
-
 
 
 
