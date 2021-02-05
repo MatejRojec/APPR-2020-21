@@ -13,7 +13,6 @@ library(GGally)
 library(mgcv)
 library(gganimate)
 library(gifski)
-library(av)
 
 options(gsubfn.engine="R")
 
