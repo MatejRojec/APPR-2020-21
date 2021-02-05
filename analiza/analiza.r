@@ -68,7 +68,7 @@ skupine <- data.frame(state=st2$state, skupina=factor(k$cluster))
 
 
 zem2 <- tm_shape(merge(zemljevid, skupine, by.x="STATE_NAME", by.y="state")) + 
-        tm_polygons("skupina", showNA = FALSE) 
+        tm_polygons("skupina", showNA = FALSE, title="Skupina") 
             
 
 

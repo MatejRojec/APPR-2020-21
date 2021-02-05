@@ -1,6 +1,5 @@
 # 2. faza obdelave podatkov: Uvoz
 
-
 # Uvoz podatkov
 
 dec <- grp <- c()
@@ -54,7 +53,7 @@ st.ha <- st %>% select(occ_code, leto, state, h_mean, a_mean, h_median, a_median
   separate(podatek_sredina, c("podatek", "sredina"), sep="_") %>%
   pivot_wider(names_from=podatek, values_from=vrednost)
 
-# Tabela iz wikipedije: https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_GDP_per_capita
+# Tabela iz wikipedije: 
 
 link <- "https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_GDP_per_capita"
 stran <- html_session(link) %>% read_html()

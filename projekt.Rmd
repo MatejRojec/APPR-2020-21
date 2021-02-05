@@ -27,7 +27,6 @@ source("lib/rstudio.r", encoding="UTF-8")
 ```
 
 # Izbira teme
-
 Analizirali bomo plače v ZDA skozi leta, analizirali bomo kateri poklici so najbolje in kateri najslabše plačani ter
 ugotavljali katere zvezne države imajo najboljše pogoje za delavce in katere najslabše ter kako je to 
 povezano z njihovim BDP. 
@@ -38,8 +37,12 @@ Podatki so bili zbrani:
 
 1. iz Ameriškega statističnega urada ([U.S. BUREAU OF LABOR STATISTICS](http://www.bls.gov/bls/proghome.htm)) v CSV formatu. 
 
+<br>
+
 2. Tabela o informacijah o BDP per capita zveznih držav - pa je bila uvožena iz wikipedije:
  https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_GDP_per_capita
+
+<br>
 
 <center>
 
@@ -65,10 +68,14 @@ Pri sklop podatkov se nanašajo na national data:
   - `occ_code` - spremenljivka: predstavlja kodo poklica (vsak poklic ima enolično določeno kodo poklica)
   - `occ_title`- meritev: naziv poklica, ki je odvisen od kode 
 
+<br>
+
 2. `t_e` je razpredelnica z dvema dimenzijama:
   - `leto` - spremenljivka: leto meritve (od 2006 do 2019)
   - `occ_code` - spremenljivka: predstavlja kodo poklica 
   - `emp` - meritev: število zaposlenih delavcev
+  
+<br>
   
 3. `nat.ha` je razpredelnica s tremi dimenzijami:
   - `leto` - spremenljivka: leto meritve (od 2006 do 2019)
@@ -76,6 +83,8 @@ Pri sklop podatkov se nanašajo na national data:
   - `sredina` - spremenljivka: tip sredine (povprečje - mean, mediana - median)
   - `h` - meritev: urna postavka plač
   - `a` - meritev: letna meritev plač
+
+<br>
 
 Drugi sklop podatkov se nanašajo na state data:
 
@@ -85,6 +94,8 @@ Drugi sklop podatkov se nanašajo na state data:
   - `occ_code` - spremenljivka: predstavlja kodo poklica 
   - `emp` - meritev: število zaposlenih delavcev
 
+<br>
+
 2. `st.ha` je razpredelnica s štirimi dimenzijami
   - `occ_code` - spremenljivka: predstavlja kodo poklica 
   - `leto` - spremenljivka: leto meritve (od 2006 do 2019)
@@ -93,12 +104,17 @@ Drugi sklop podatkov se nanašajo na state data:
   - `h` - meritev: urna postavka plač
   - `a` - meritev: letna meritev plač  
   
+<br>
+
+
 Tretji podatki so pobrani iz Wikipedije:
 
 1. `GDP_by_state` je razpredelnica z dvema dimenzijama
   - `State` - spremenljivka: zvezne države ZDA  
-  - `leto` - spremenljivka: leto meritve (od 2006 do 2019)
+  - `leto` - spremenljivka: leto meritve (od 2011 do 2018)
   - `GDP` - meritev: BDP per capita 
+
+<br>
 
 ***
 
@@ -114,18 +130,18 @@ Prvi graf prikazuje zaposlenost po letih v ZDA.
 graf1
 ```
 
-Čeprav je graf enostaven se iz njega, da dosti razbrati. Vidimo, da zaposlenost v ZDA narašča do leta 2008, nato pa drastično pade, kar je sevda posledica makroekonomske finančne zadolžitvene krize, ki se je takrat začela v ZDA. Zaposlenost se ponovno začne višati v letih po 2010 in je leta 2018 najvišja. To nam daje dober znak za prihodnjo gospodarstvo države, saj bi morda tako mislili, da bo še naprej več ljudji delalo in bo tako vedno manj brezposelnosti. Lahko bi si pa mislili tudi, da bo v bližnji prihodnosti ponovno makroekonomska kriza, saj se te pojavljamo na vsakih cca. 8 do 10 let in bi zato ponovno pričakovali padec gospodarstva. Torej iz grafa samega in brez dodatnih informacij o ostalih makroekonomskih kazalcih bi težko napovedali, kaj se bo zgodilo v prihodnjih letih. Več o tem bomo spregovorili tudi kasneje. Grafu sem tudi dodal model po metode najmanjših kvadratov, to pa predvsem zato ker sem želel izpostaviti, da če bi modelirali s to metodo nas bi to najverjetneje zavelo in nas pripreljalo do nesmiselnih rezultatov. 
+Čeprav je graf enostaven se iz njega, da dosti razbrati. Vidimo, da zaposlenost v ZDA narašča do leta 2008, nato pa drastično pade, kar je sevda posledica makroekonomske finančne zadolžitvene krize, ki se je takrat začela v ZDA. Zaposlenost se ponovno začne višati v letih po 2010 in je leta 2018 najvišja. To nam daje dober znak za prihodnjo gospodarstvo države, saj bi morda tako mislili, da bo še naprej več ljudji delalo in bo tako vedno manj brezposelnosti. Lahko bi si pa mislili tudi, da bo v bližnji prihodnosti ponovno makroekonomska kriza, saj se te pojavljamo na vsakih cca. 8 do 10 let in bi zato ponovno pričakovali padec zaposlenosti. Torej iz grafa samega in brez dodatnih informacij o ostalih makroekonomskih kazalcih bi težko napovedali, kaj se bo zgodilo v prihodnjih letih. Več o tem bomo spregovorili tudi kasneje. Grafu sem tudi dodal model po metode najmanjših kvadratov, to pa predvsem zato ker sem želel izpostaviti, da če bi modelirali s to metodo nas bi to najverjetneje zavedlo in nas pripreljalo do nesmiselnih rezultatov. 
 
 
 
-Graf prikazuje porazdelitec plač v ZDA za najboljše plačane tri poklice (po 
+Graf prikazuje porazdelitev plač v ZDA za najboljše plačane tri poklice (po 
 urni postavki). 
 
 ```{r graf2, echo=FALSE, fig.align='center'}
 graf2
 ```
 
-Klučno opažanje iz teh treh svečk je to, da so najboljše plačeni poklici vedno dobro plačani in pa da je odstopanje od povprečja dokaj majhno. Torej boljše blačani poklici so stalno boljše plačani. Trend za posamezen poklic si bomo pa bolj natančne ogledali v naslednjem grafu.
+Klučno opažanje iz teh treh svečk je to, da so najboljše plačeni poklici vedno dobro plačani in pa da je odstopanje od povprečja dokaj majhno. Torej boljše blačani poklici so v povprečju dobro plačani. Trend za posamezen poklic si bomo pa bolj natančne ogledali v naslednjem grafu.
 
 
 
@@ -136,7 +152,7 @@ spreminjajo čez leta.
 graf3
 ```
 
-Iz grafa je razvidno, da se plače boljše blačanih poklicev konstantno večjo. Izjema so tu 
+Iz grafa je razvidno, da se plače boljše plačanih poklicev konstantno večjo. Izjema so tu 
 ortodonti, katerim se plača med krizo zmanjša potem pa se spet začne rasti. Na 
 druga dva poklici pa kriza ni vplivala, ampak se je takrat kar povečala, kar me je 
 malo presenetilo. 
@@ -184,15 +200,24 @@ zem1
  
 Iz zemlejevida se vidi katere države imajo najboljšo povprečno plačo. Tu npr. izstopajo Aljaska, Kalifornija in Washingtom. V negativnem pa npr. Montana, Oklahoma in Arkansas. Tu se lepo vidi tudi neenakost med zveznimi državami v ZDA.  
 
+<br> 
+
+Spodnja animacija prikazuje BDP per capita v Aljaski, iz nje lahko razberemo gospodarsko rast Aljaske. Vidimo gospodarsko rast v letih od 2012 do 2014, nato pa 
+padec v gospodarski rasti. To je morda nekoliko presenetljivo, saj smo v teh letih videli veliko rast v zaposlenosti v ZDA in bi zato morda tudi pričakovali, da bo tudi v Aljaski gospodarska rast pozitivna.
+
+```{r animacija, animacija, echo=FALSE, fig.align='center', warning=FALSE, fig.cap='Animacija'}
+animacija
+```
+
 ***
 
-# Analiza 
+# Napredna analiza podatkov
 
 ```{r analiza, echo=FALSE, message=FALSE, warning=FALSE}
 source("analiza/analiza.r", encoding = "UTF-8")
 ```
 
-V razdelku analize si bomo pogledali zelo enostaven primer predikcije, kako bo 
+V razdelku analize si bomo pogledali enostaven primer predikcije, kako bo 
 z BDP per capita v zvezni državi Alaski v naslednjih letih. 
 
 
@@ -204,8 +229,7 @@ Najprej smo izračunali kako naj bi bilo z BDP per capita v naslednjih letih s
 pomočjo kvadratične odvisnosti spremenljivk v prejšnjih letih. Ugotovili smo, da 
 naj bi iz teh podatkov se v naslednjih letih BDP per capita znižal, kar je tudi
 v skladu, kar se je dejansko zgodilo, a se je tu znižal več kot pa se bi dejansko 
-moral. Problem je seveda v tem, da smo upošteval, da naj bi bil BDP per capita odvisen
-le od leta, kar pa seveda ni res. Useeno pa za leto 2019 napoved ni tako slaba.
+moral. 
 
 ```{r zem2, echo=FALSE, fig.align='center'}
 zem2
@@ -220,10 +244,10 @@ kot bi to pričakovai.
 # Shiny 
 
 ```{r shiny, echo=FALSE}
-shinyAppDir("shiny", options=list(width="100%", height=600))
+shinyAppDir("shiny", options=list(width="100%", height=1000))
 ```
 
-S pomočjo shiny-ja lahko boljše analiziramo nekatere dejavike, ki smo jih prej že obravnavali. Prvi tab nam prikazuje porazdelitev plač v ZDA. Vidimo, da je večina plač v nižjem delu (urne postavke od 10-30), medtem ko je višje plačanih plač bistveno manj. Tu ponovno vidimo neenakost med poklici.
+S pomočjo shiny-ja lahko boljše analiziramo nekatere dejavike, ki smo jih prej že obravnavali. Prvi tab nam prikazuje porazdelitev plač v ZDA. Vidimo, da je večina plač v nižjem delu (urne postavke od 10-30), medtem ko je višje plačanih plač bistveno manj. Tu ponovno vidimo neenakost med poklici. Porazdelitev nekoliko spominja na porazdelitev $\chi ^2$.
 
 Drugi tab predstavlja analizo plač glede na država in glede na leto. Vidimo, da se plače z leti povprečno nekoliko večejo, saj se pravokotniki v povprečju nekoliko gibljejo navzgor.
 

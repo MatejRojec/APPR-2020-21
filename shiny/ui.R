@@ -1,5 +1,5 @@
 
-shinyUI(fluidPage(theme = shinytheme("slate"),
+shinyUI(fluidPage(theme = shinytheme("cyborg"),
        navbarPage("Analiza plač", 
         tabPanel("Histogram",
         titlePanel(title=h2("Analiza glede na povprečno urno postavko", align="center")),

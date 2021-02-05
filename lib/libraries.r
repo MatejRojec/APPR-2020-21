@@ -11,6 +11,10 @@ library(shiny)
 library(shinythemes)
 library(GGally)
 library(mgcv)
+library(gganimate)
+library(gifski)
+library(av)
+
 
 
 options(gsubfn.engine="R")
