@@ -76,7 +76,7 @@ graf4 <- bottom %>%
   geom_point() +
   xlab("Leto") +
   ylab("Povprečna plača (letno)") +
-  labs(title="Povprečna plača dveh najslabše plačanih poklicev.") +
+  labs(title="Povprečna plača štirih slabše plačanih poklicev.") +
   facet_wrap(~poklic, ncol=2) 
 
 # Zaposlenost top 3 poklicev in bot. 2 poklicev
