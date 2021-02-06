@@ -206,7 +206,7 @@ Iz zemlejevida se vidi katere države imajo najboljšo povprečno plačo. Tu npr
 Spodnja animacija prikazuje BDP per capita v Aljaski, iz nje lahko razberemo gospodarsko rast Aljaske. Vidimo gospodarsko rast v letih od 2012 do 2014, nato pa 
 padec v gospodarski rasti. To je morda nekoliko presenetljivo, saj smo v teh letih videli veliko rast v zaposlenosti v ZDA in bi zato morda tudi pričakovali, da bo tudi v Aljaski gospodarska rast pozitivna.
 
-```{r animacija, animacija, echo=FALSE, fig.align='center', warning=FALSE, fig.cap='Animacija'}
+```{r animacija, echo=FALSE, fig.align='center', warning=FALSE, fig.cap='Animacija'}
 animacija
 ```
 
