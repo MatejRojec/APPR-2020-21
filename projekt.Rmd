@@ -260,5 +260,5 @@ Tretji tab primerja BDP per capita v izbrani zvezni državi in BDP per capita v 
 # Zaključek
 
 S pomočjo projekta sem si potrdil domneve o neenakosti plač v ZDA pri tem sem pa vmes našel tudi
-nekaj rezultatov, ki so me presenetili, kar mi je bilo zelo všeč. V se lahko sklepa, da neenakost
+nekaj rezultatov, ki so me presenetili, kar mi je bilo zelo všeč. Lahko se sklepa, da neenakost
 med poklici raste in da tudi neenakost med zveznimi državama velika. 
