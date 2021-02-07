@@ -55,8 +55,12 @@ shinyUI(fluidPage(theme = shinytheme("cyborg"),
         sidebarPanel(
                 selectInput(inputId = "tabela",
                             label = "Atribut:",
-                            choices = c("h_mean", "a_mean", "h_median", 
-                                        "a_meadian","employment")
+                            choices =  c("Povprečne plače v ZDA (urna postavka)", 
+                                         "Povprečne plače v ZDA (letna postavka)", 
+                                         "Mediana plač v ZDA (urna postavka)", 
+                                         "Mediana plač v ZDA (letna postavka)",
+                                         "Zaposlenost v ZDA")
+                            
                                 )
                 ),
                  mainPanel(
@@ -67,5 +71,5 @@ shinyUI(fluidPage(theme = shinytheme("cyborg"),
         )) #shiny in fluid         
                   
                   
-        
+
      

@@ -13,11 +13,12 @@ shinyServer(function(input, output) {
     output$distPlot2 <- renderPlot({
       y <- st.ha %>% filter(state==input$drzava, leto==input$leto) %>% 
                     filter(sredina=="mean")
-      print( ggplot(y) +
+      print( ggplot(y) + 
                aes(x = leto, y = h) +
                geom_boxplot(fill="green", colour="green" , alpha=I(0.7)) +
                geom_point(size=0.2, colour="blue") +
-               scale_x_continuous(name = "leto", breaks = seq(input$leto,input$leto,1)) + 
+               labs(title=paste('Analiza plač v zvezni državi', input$drzava)) +
+               scale_x_continuous(name = "Leto", breaks = seq(input$leto,input$leto,1)) + 
                scale_y_continuous(name = "Urna mediana plača glede na poklic", 
                                    breaks = seq(20,120,20), limits = c(20,120)) + 
                geom_jitter(alpha=I(0.4)) 
@@ -34,7 +35,7 @@ shinyServer(function(input, output) {
                    geom_line(size=1)  +
                    xlab("Leto") +
                    ylab("BDP per capita") +
-                   labs(title="Primerjava BDP per capita.") 
+                   labs(title="Primerjava BDP per capita.",  color='Zvezna država')  
           )
       })
       
@@ -48,25 +49,25 @@ shinyServer(function(input, output) {
               # geom_point(size=2) +
                  xlab("Leto") +
                  ylab("Povprečna urna postavka") +
-                 labs(title="Primerjava urnih postavk.") +
+                 labs(title="Primerjava urnih postavk.", color='Zvezna država') +
                  stat_smooth(method = "lm") 
         )
       })
     
       output$distPlot5 <- renderPlot({
-        if ( input$tabela=="h_mean" | input$tabela=="a_mean") 
+        if ( input$tabela=="Povprečne plače v ZDA (urna postavka)" | input$tabela=="Povprečne plače v ZDA (letna postavka)") 
         { mapdb <- st.ha %>% filter(sredina=="mean") 
-        } else if ( input$tabela=="h_median" | input$tabela=="a_meadian") 
+        } else if ( input$tabela=="Mediana plač v ZDA (urna postavka)" | input$tabela=="Mediana plač v ZDA (letna postavka)") 
         { mapdb <- st.ha %>% filter(sredina=="median") 
         } else {  mapdb <-  mapdb <- t_e_s
         }
-        if (input$tabela=="h_mean" | input$tabela=="h_median")
+        if (input$tabela=="Povprečne plače v ZDA (urna postavka)" | input$tabela=="Mediana plač v ZDA (urna postavka)")
         {mapdb1 <- mapdb %>%
           drop_na(h) %>%
           group_by(state) %>% 
           summarise(povprecje= mean(h))
         a <- tmap_style("col_blind") 
-        } else if (input$tabela=="a_mean" | input$tabela=="a_meadian")
+        } else if (input$tabela=="Povprečne plače v ZDA (letna postavka)" | input$tabela=="Mediana plač v ZDA (letna postavka)")
         {mapdb1 <- mapdb %>%
           drop_na(a) %>%
           group_by(state) %>% 
@@ -79,9 +80,12 @@ shinyServer(function(input, output) {
           summarise(povprecje= mean(emp)) 
         a <- tmap_style("gray") 
         }  
+        
+        
         print (
           tm_shape(merge(zemljevid, mapdb1, by.x="STATE_NAME", by.y="state")) +
-          tm_polygons("povprecje") +
+          tm_polygons("povprecje", title=input$tabela, legend.hist=TRUE) +
+          tm_layout(legend.outside=TRUE) +
           a
               )
       })  

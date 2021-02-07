@@ -133,7 +133,8 @@ graf1
 Čeprav je graf enostaven se iz njega, da dosti razbrati. Vidimo, da zaposlenost v ZDA narašča do leta 2008, nato pa drastično pade, kar je sevda posledica makroekonomske finančne zadolžitvene krize, ki se je takrat začela v ZDA. Zaposlenost se ponovno začne višati v letih po 2010 in je leta 2018 najvišja. To nam daje dober znak za prihodnjo gospodarstvo države, saj bi morda tako mislili, da bo še naprej več ljudji delalo in bo tako vedno manj brezposelnosti. Lahko bi si pa mislili tudi, da bo v bližnji prihodnosti ponovno makroekonomska kriza, saj se te pojavljamo na vsakih cca. 8 do 10 let in bi zato ponovno pričakovali padec zaposlenosti. Torej iz grafa samega in brez dodatnih informacij o ostalih makroekonomskih kazalcih bi težko napovedali, kaj se bo zgodilo v prihodnjih letih. Več o tem bomo spregovorili tudi kasneje. Grafu sem tudi dodal model po metodi najmanjših kvadratov, to pa predvsem zato ker sem želel izpostaviti, da če bi modelirali s to metodo nas bi to najverjetneje zavedlo in nas pripreljalo do nesmiselnih rezultatov. 
 
 
-
+V nadaljevanju smo poklice razdelili na boljše in slabše plačane prefix Vrh je pred boljše
+plačanimi poklici, medtem ko je pred slabše plačanimi poklici prefix Spodaj.
 Graf prikazuje porazdelitev plač v ZDA za najboljše plačane tri poklice (po 
 urni postavki). 
 
@@ -232,7 +233,7 @@ naj bi iz teh podatkov se v naslednjih letih BDP per capita znižal, kar je tudi
 v skladu, kar se je dejansko zgodilo, a se je tu znižal več kot pa se bi dejansko 
 moral. 
 
-```{r zem2, echo=FALSE, fig.align='center'}
+```{r zem2, echo=FALSE, fig.align='center', fig.cap='Razdelitev držav po metodi voditeljev'}
 zem2
 ```
 

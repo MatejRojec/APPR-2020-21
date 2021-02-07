@@ -23,21 +23,30 @@ graf1 <- t_e %>% filter(occ_code == "00-0000") %>%
                                    size=10, angle=7))
 
 # PORAZDELITEV TOP3 PLAC PO LETIH
+kode[591, 2] <- "Kirurgi"
+kode[585,2] <- "Anesteziologi"
+kode[575, 2] <- "Ortodonti" 
+kode[850,2] <- "Frizerji"
+kode[784,2] <- "Pomivalci posod"
+kode[884,2] <- "Blagajniki"
+kode[777,2] <- "Natakarji in natakarice"
+  
+
 joined <- inner_join(nat.ha, kode, by="occ_code") 
 pr <- joined %>% filter(sredina=="mean") 
 top <- pr[pr$occ_code %in% c("29-1067","29-1061","29-1023"), ]  %>% 
-  rename(poklic=occ_title)
-top$poklic = paste0('Top:', top$poklic)
-
+  rename(Poklic=occ_title)
+top$Poklic = paste0('Vrh:', top$Poklic)
 
 graf2 <- top %>%
-  ggplot(aes(x=poklic, y=h)) +
+  ggplot(aes(x=Poklic, y=h)) +
   xlab("Poklic") + 
   ylab("Povprečna urna postavka plač") + 
   geom_boxplot(fill="red", colour="red" , alpha=I(0.2)) +
   geom_jitter(alpha=I(0.2)) +
   geom_point() + 
   labs(title="Porazdelitev plač boljše plačanih poklicev") 
+
 
 # TOP 3 GRAFICNO PO DREVESIH
 
@@ -57,7 +66,7 @@ graf2 <- top %>%
 
 graf3 <- top %>%
   filter(leto!="2019") %>%
-  ggplot(aes(x=leto, y=h, col=poklic)) +
+  ggplot(aes(x=leto, y=h, col=Poklic)) +
   xlab("Leto") +
   ylab("Povprečna plača na uro") +
   labs(title="Povprečna urna plača treh najboljše plačanih poklicev.") +
@@ -67,33 +76,33 @@ graf3 <- top %>%
 
 # BOTTOM 3 GLEDE NA AVRAGE WAGE 
 bottom <- pr[pr$occ_code %in%  c("39-5093","35-9021","41-2011","35-3031"), ] %>% 
-  rename(poklic=occ_title)
-bottom$poklic = paste0('Bottom:', bottom$poklic)
+  rename(Poklic=occ_title)
+bottom$Poklic = paste0('Spodaj:', bottom$Poklic)
 
 graf4 <- bottom %>%
   ggplot(aes(x=leto, y=a)) +
   geom_line(color="blue") +
   geom_point() +
   xlab("Leto") +
-  ylab("Povprečna plača (letno)") +
-  labs(title="Povprečna plača štirih slabše plačanih poklicev.") +
-  facet_wrap(~poklic, ncol=2) 
+  ylab("Povprečna plača na leto") +
+  labs(title="Povprečna letna plača štirih slabše plačanih poklicev.") +
+  facet_wrap(~Poklic, ncol=2) 
 
 # Zaposlenost top 3 poklicev in bot. 2 poklicev
 joined_emp <- inner_join(t_e, kode, by="occ_code") 
 emoloyment <- joined_emp
 bottomemp <- emoloyment[emoloyment$occ_code %in%  c("39-5093","35-9021","41-2011","35-3031"), ] %>% 
-  rename(poklic=occ_title)
-bottomemp$poklic = paste0('Bottom:', bottomemp$poklic)
+  rename(Poklic=occ_title)
+bottomemp$Poklic = paste0('Spodaj:', bottomemp$Poklic)
 
 topemp <- emoloyment[emoloyment$occ_code %in% c("29-1067","29-1061","29-1023"), ]  %>% 
-  rename(poklic=occ_title)
-topemp$poklic = paste0('Top:', topemp$poklic)
+  rename(Poklic=occ_title)
+topemp$Poklic = paste0('Vrh:', topemp$Poklic)
 together <- rbind(bottomemp, topemp)
 
 graf5 <- together %>% filter(leto=="2018") %>%
   ggplot() +
-  aes(x="", y=emp, fill=poklic) + 
+  aes(x="", y=emp, fill=Poklic) + 
   scale_y_continuous(labels = comma_format(big.mark = ".", decimal.mark = ",")) +
   geom_col(width=1) +
   coord_polar(theta="y") + xlab("") + ylab("") +
@@ -103,7 +112,7 @@ graf5 <- together %>% filter(leto=="2018") %>%
 graf6 <- together %>% 
    filter(leto!="2019") %>%
    ggplot(aes(x=leto)) +
-   geom_col(aes(y=emp, fill=poklic)) +
+   geom_col(aes(y=emp, fill=Poklic)) +
    scale_y_continuous(labels = comma_format(big.mark = ".", decimal.mark = ",")) +
    xlab("Leto") +
    ylab("Zaposlenost") +
@@ -120,7 +129,7 @@ map1_db <- st.ha  %>%
   summarise(povprecje= mean(h))
 
 zem1 <-  tm_shape(merge(zemljevid, map1_db, by.x="STATE_NAME", by.y="state"), simplify = 0.2) +
-  tm_polygons("povprecje",title="Povprečne plače v ZDA",legend.hist=TRUE,
+  tm_polygons("povprecje",title="Povprečne plače v ZDA (urna postavka)",legend.hist=TRUE,
               palette = c("springgreen","lightblue","navy")) +
   tm_layout(legend.outside=TRUE) +
   tm_text("STATE_ABBR", size=0.3) 
@@ -140,8 +149,8 @@ graf9 <-  ggplot(podatki, aes(x=leto, y=GDP, size =GDP)) +
   theme_light() +
   labs(title = 'Leto: {floor(frame_time)}',
        x = 'Leto',
-       y = 'GDP PP') +
-  scale_size(name="GDP PC v Aljaski",range = c(1,15)) +
+       y = 'BDP per capita') +
+  scale_size(name="BDP PC v Aljaski",range = c(1,15)) +
   transition_time(leto) +
   shadow_wake(0.2) 
 

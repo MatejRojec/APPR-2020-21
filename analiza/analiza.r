@@ -1,5 +1,7 @@
 # 4. faza: Analiza podatkov
 
+kode[1,1] <- "haha"
+
 # Podatke katere bomo modelirali
 
 podatki <- GDP_by_state %>% filter(State=="Alaska")
