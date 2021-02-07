@@ -6,7 +6,7 @@ shinyUI(fluidPage(theme = shinytheme("cyborg"),
         sidebarLayout(
         sidebarPanel(
                       sliderInput(inputId = "bini",
-                                  label = "Število binov:",
+                                  label = "Število skupin:",
                                   min = 1,
                                   max = 100,
                                   value = 10,
